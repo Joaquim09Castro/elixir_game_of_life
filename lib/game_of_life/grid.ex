@@ -2,7 +2,7 @@ defmodule GameOfLife.Grid do
   
   defstruct [:size, :cells]
 
-  @type :: %__MODULE__{
+  @type t :: %__MODULE__{
     size: pos_integer(),
     cells: tuple()
   }
@@ -16,9 +16,9 @@ defmodule GameOfLife.Grid do
 
   defp init_cells(size) do
     List.duplicate(false, size)
-      |> List.to_tuple/1
+      |> List.to_tuple()
       |> List.duplicate(size)
-      |> List.to_tuple/1
+      |> List.to_tuple()
   end
 
 end
