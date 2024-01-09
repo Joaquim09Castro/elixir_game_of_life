@@ -22,4 +22,21 @@ defmodule GameOfLife.GridTest do
 
     assert expected_grid == grid.cells
   end
+
+  test "switch_life_state/3 will change the state of specified cells" do
+    size = 3
+    grid = Grid.new(size)
+      |> Grid.switch_life_state(0, 0)
+      |> Grid.switch_life_state(1, 1)
+      |> Grid.switch_life_state(2, 2)
+
+    expected_grid = {
+      {true, false, false},
+      {false, true, false},
+      {false, false, true}
+    }
+
+    assert expected_grid == grid.cells
+  end
+
 end
