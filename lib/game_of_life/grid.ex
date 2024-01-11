@@ -1,5 +1,4 @@
 defmodule GameOfLife.Grid do
-  
   defstruct [:size, :cells]
 
   @type t :: %__MODULE__{
@@ -21,4 +20,17 @@ defmodule GameOfLife.Grid do
       |> List.to_tuple()
   end
 
+  def switch_life_state(grid, x, y) do
+    new_cell_state =
+      !( grid.cells
+          |> elem(x)
+          |> elem(y) )
+
+    new_row = grid.cells
+      |> elem(x)
+      |> put_elem(y, new_cell_state)
+
+    upd_cells = put_elem(grid.cells, x, new_row)
+    %__MODULE__{grid | cells: upd_cells}
   end
+end

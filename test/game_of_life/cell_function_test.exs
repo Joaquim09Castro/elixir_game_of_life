@@ -1,19 +1,8 @@
 defmodule GameOfLife.CellFunctionTest do
-  test "switch_life_state/3 will change the state of specified cells" do
-    size = 3
-    grid = Grid.new(size)
-      |> Grid.switch_life_state(0, 0)
-      |> Grid.switch_life_state(1, 1)
-      |> Grid.switch_life_state(2, 2)
+  use ExUnit.Case, async: true
 
-    expected_grid = {
-      {true, false, false},
-      {false, true, false},
-      {false, false, true}
-    }
-
-    assert expected_grid == grid.cells
-  end
+  alias GameOfLife.Grid
+  alias GameOfLife.CellFunction, as: CellFunc
 
   test "State is changing according to rules" do
     size = 5
@@ -36,7 +25,7 @@ defmodule GameOfLife.CellFunctionTest do
     result =
       for x <- 0..size - 1 do
         for y <- 0..size - 1 do
-          Grid.should_be_active?(grid, x, y)
+          CellFunc.should_be_active?(grid, x, y)
         end
       end
 

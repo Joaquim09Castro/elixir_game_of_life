@@ -1,18 +1,4 @@
 defmodule GameOfLife.CellFunction do
-  def switch_life_state(grid, x, y) do
-    new_cell_state =
-      !( grid.cells
-          |> elem(x)
-          |> elem(y) )
-
-    new_row = grid.cells
-      |> elem(x)
-      |> put_elem(y, new_cell_state)
-
-    upd_cells = put_elem(grid.cells, x, new_row)
-    %__MODULE__{grid | cells: upd_cells}
-  end
-
   defp is_active?(grid, x, y) do
     grid.cells
       |> elem(x)
@@ -46,6 +32,6 @@ defmodule GameOfLife.CellFunction do
     grid
       |> get_neighbours(x, y)
       |> Enum.map(fn {x_area, y_area} -> is_active?(grid, x_area, y_area) end)
-      |> Enum.count(& &1 == true)
+      |> Enum.count(& &1)
   end
 end
