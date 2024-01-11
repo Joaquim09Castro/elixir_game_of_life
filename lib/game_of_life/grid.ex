@@ -41,7 +41,7 @@ defmodule GameOfLife.Grid do
       |> elem(y)
   end
 
-  defp should_be_active?(grid, x, y) do
+  def should_be_active?(grid, x, y) do
     neighbours = get_actives(grid, x, y)
     is_active? = is_active?(grid, x, y)
 
