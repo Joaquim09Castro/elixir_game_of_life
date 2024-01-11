@@ -54,6 +54,8 @@ defmodule GameOfLife.Grid do
         true
       is_active? && neighbours in 2..3 ->
         true
+      !(is_active?) ->
+        false
     end
 
   end
